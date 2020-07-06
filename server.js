@@ -1,12 +1,24 @@
 const http = require('http');
 const fs = require('fs');
+const _ = require('lodash');
 
 const server = http.createServer((req, res) => {
 	// console.log('request made');
-	console.log(req.url, req.method);
+	// console.log(req.url, req.method);
 
-	//set header content type
-	res.setHeader('Content-Type', 'text/html');
+	// lodash
+	// const num = _.random(0, 30);
+	// console.log(num);
+
+	const greet = _.once(() => {
+		console.log('hello ninja');
+	});
+
+	greet();
+	greet();
+
+	// set header content type
+	// res.setHeader('Content-Type', 'text/html');
 
 	let path = './views/';
 	switch (req.url) {
@@ -38,7 +50,7 @@ const server = http.createServer((req, res) => {
 			console.log(err);
 			res.end();
 		} else {
-			//res.write(data);
+			// res.write(data);
 			res.end(data);
 		}
 	});
